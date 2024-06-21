@@ -21,7 +21,7 @@ function addMessageToChatBox(message, sender) {
 }
 
 function extractGenres(query) {
-    const genres = query.match(/multiplayer|rts|strategy|shooter|rpg|action|adventure|RTS|open world|rpg|war|historical/gi);
+    const genres = query.match(/multiplayer|rts|strategy|shooter|rpg|action|adventure/gi);
     return genres ? genres.join(',') : '';
 }
 
