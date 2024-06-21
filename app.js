@@ -20,18 +20,31 @@ function addMessageToChatBox(message, sender) {
     chatBox.scrollTop = chatBox.scrollHeight;
 }
 
+function extractGenres(query) {
+    const genres = query.match(/multiplayer|rts|strategy|shooter|rpg|action|adventure|RTS|open world|rpg|war|historical/gi);
+    return genres ? genres.join(',') : '';
+}
+
+function extractTags(query) {
+    const tags = query.match(/free|co-op|online|pvp|singleplayer|multiplayer/gi);
+    return tags ? tags.join(',') : '';
+}
+
 async function getGameRecommendations(query) {
-    const apiUrl = `https://api.rawg.io/api/games?key=c0b700cbe6164396b15010d979d211f1&tags=`;
+    const genres = extractGenres(query);
+    const tags = extractTags(query);
+    const apiUrl = `https://api.rawg.io/api/games?key=YOUR_RAWG_API_KEY&genres=${genres}&tags=${tags}`;
+    
     try {
         const response = await fetch(apiUrl);
         const data = await response.json();
         const games = data.results;
 
         if (games.length === 0) {
-            return 'No games found.';
+            return 'No games found matching your criteria.';
         }
 
-        let gameList = 'Here are some games:\n';
+        let gameList = 'Here are some games matching your criteria:\n';
         games.forEach((game) => {
             gameList += `\n- ${game.name}`;
         });
