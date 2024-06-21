@@ -21,7 +21,7 @@ function addMessageToChatBox(message, sender) {
 }
 
 async function getGameRecommendations(query) {
-    const apiUrl = `https://api.rawg.io/api/games?key=c0b700cbe6164396b15010d979d211f1&tags=multiplayer,rts,free`;
+    const apiUrl = `https://api.rawg.io/api/games?key=c0b700cbe6164396b15010d979d211f1&tags=`;
     try {
         const response = await fetch(apiUrl);
         const data = await response.json();
@@ -31,7 +31,7 @@ async function getGameRecommendations(query) {
             return 'No games found.';
         }
 
-        let gameList = 'Here are some free games:\n';
+        let gameList = 'Here are some games:\n';
         games.forEach((game) => {
             gameList += `\n- ${game.name}`;
         });
