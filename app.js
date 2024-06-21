@@ -33,7 +33,7 @@ function extractTags(query) {
 async function getGameRecommendations(query) {
     const genres = extractGenres(query);
     const tags = extractTags(query);
-    const apiUrl = `https://api.rawg.io/api/games?key=YOUR_RAWG_API_KEY&genres=${genres}&tags=${tags}`;
+    const apiUrl = `https://api.rawg.io/api/games?key=c0b700cbe6164396b15010d979d211f1&genres=${genres}&tags=${tags}`;
     
     try {
         const response = await fetch(apiUrl);
